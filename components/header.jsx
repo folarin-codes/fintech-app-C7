@@ -4,7 +4,7 @@ import { router } from "expo-router";
 
 const Header = ({text})=>{
     return (
-        <View style={{flexDirection:"row", alignItems:'center', justifyContent:'space-between'}}>
+        <View style={{flexDirection:"row", alignItems:'center', justifyContent:'space-between', marginBottom:20}}>
 
             <Pressable onPress={()=> {
                 router.back()
