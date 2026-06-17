@@ -1,17 +1,51 @@
 import { SafeAreaView,  } from "react-native-safe-area-context"
-import { Text , Pressable, StyleSheet,View} from "react-native"
+import { Text , Pressable, StyleSheet,View, TextInput} from "react-native"
 import { router } from "expo-router"
+import { useRouter } from "expo-router"
 
 import Header from "../components/header"
 import CustomTextInput from "../components/textInput"
 import { Checkbox } from 'expo-checkbox';
-import { useState } from "react"
+import { useState , useEffect} from "react"
 import CustomButton from "../components/button"
+import AsyncStorage from '@react-native-async-storage/async-storage';
+
+
+// console.log(AsyncStorage)
 
 
 const SignUp = ()=>{
 
     const [isChecked, setChecked] = useState(false);
+    const [fullName , setFullName] = useState('')
+
+   useEffect( async ()=>{
+
+    const myStoredName = await AsyncStorage.getItem('fullName')
+
+    console.log('my saved name ', myStoredName)
+
+   }, [])
+
+
+    const storeFullName = async ()=>{
+
+        try{
+
+            await AsyncStorage.setItem('fullName', fullName)
+
+        }
+
+        catch(error){
+
+        }
+
+
+
+
+    }
+
+
 
 
     return(
@@ -25,11 +59,15 @@ const SignUp = ()=>{
             </View>
 
             <View style={styles.inputContainer}>
+
+                <TextInput onChangeText={(text)=> setFullName(text)} style={{borderWidth:2, borderColor:"red", height:50, width:'100%'}}/>
                 <CustomTextInput label={'Name'} placeHolder={'Enter your full name'}/>
 
-                <CustomTextInput label={'Email'} placeHolder={'Enter your email'}/>
+                <CustomTextInput label={'Email'} keyboardType={'email-address'} placeHolder={'Enter your email'}/>
 
                 <CustomTextInput label={'Password'} placeHolder={'password'}/>
+
+                 <CustomTextInput keyboardType={'numeric'} label={'Phone'} placeHolder={'phone number'}/>
 
             </View>
 
@@ -44,7 +82,9 @@ const SignUp = ()=>{
 
             <View style={styles.buttonContainer}>
                 <CustomButton style={{backgroundColor:"#E1E0fc", width:"30%", height:34}} textColor={'#2C14DD'} text={'Register'}/>
-                <CustomButton style={{width:'60%'}} text={'Login'}/>
+                <CustomButton onPress={()=>{
+                    storeFullName()
+                }} style={{width:'60%'}} text={'Login'}/>
             </View>
 
             

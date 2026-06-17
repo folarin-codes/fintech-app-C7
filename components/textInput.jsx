@@ -1,13 +1,55 @@
-import { Text } from "react-native"
-import { View , TextInput, StyleSheet} from "react-native"
+import { Pressable, Text } from "react-native"
+import { View , TextInput, StyleSheet, Dimensions} from "react-native"
+import Entypo from '@expo/vector-icons/Entypo';
+import { useState } from "react";
 
 
 
-const CustomTextInput = ({label, placeHolder})=>{
+const CustomTextInput = ({label, placeHolder, keyboardType})=>{
+
+
+
+    const [visible , setVisible] = useState(true)
+
+    console.log(visible)
+
+
+    const {width} = Dimensions.get('screen')
     return(
         <View style={styles.container}>
-            <Text style={styles.label}>{label}</Text>
-            <TextInput placeholder={placeHolder} placeholderTextColor={'black'} />
+
+            <View style={{gap:10}}>
+
+                 <Text style={styles.label}>{label}</Text>
+                <TextInput secureTextEntry={visible} style={{width:width*.7}} keyboardType={keyboardType} placeholder={placeHolder} placeholderTextColor={'black'} />  
+
+            </View>
+           
+
+            <View>
+
+
+
+                {
+                    label.toLowerCase() == "password" ? <Pressable onPress={()=>{
+                        setVisible(!visible)
+                    }}>
+
+                    {
+                   visible ? 
+                <Entypo name="eye" size={24} color="blue" /> : <Entypo name="eye-with-line" size={24} color="blue" />
+                }
+                    </Pressable>
+
+                    : null
+                }
+
+               
+                
+
+
+            </View>
+
         </View>
     )
 }
@@ -18,9 +60,11 @@ const styles = StyleSheet.create({
         backgroundColor:"white",
         borderRadius:25,
         height:61,
-        paddingLeft:16,
-        justifyContent:"center",
-        gap:5
+        paddingHorizontal:16,
+        justifyContent:"space-between",
+        gap:5,
+        flexDirection:"row",
+        alignItems:"center"
     },
     label:{
         color:"#8F94A3",
