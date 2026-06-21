@@ -18,14 +18,38 @@ const SignUp = ()=>{
 
     const [isChecked, setChecked] = useState(false);
     const [fullName , setFullName] = useState('')
+    const [email, setEmail] = useState('')
+    const [phoneNumber, setPhoneNumber] = useState('')
+    const [password , setPassword] = useState('')
 
-   useEffect( async ()=>{
+   useEffect(  ()=>{
 
-    const myStoredName = await AsyncStorage.getItem('fullName')
 
-    console.log('my saved name ', myStoredName)
+     getAsyncItem()
+   
 
    }, [])
+
+
+
+async function getAsyncItem(){
+
+    try{
+
+        const name = await AsyncStorage.getItem('fullName')
+
+
+        console.log('name from async storage', name)
+    }
+
+    catch(error){
+
+    }
+
+} 
+
+
+
 
 
     const storeFullName = async ()=>{
@@ -40,11 +64,11 @@ const SignUp = ()=>{
 
         }
 
-
-
-
     }
 
+
+    console.log("I am a developer!!!")
+    console.log(fullName)
 
 
 
@@ -58,16 +82,29 @@ const SignUp = ()=>{
 
             </View>
 
+            {/* <Text>{fullName}</Text> */}
+
             <View style={styles.inputContainer}>
 
-                <TextInput onChangeText={(text)=> setFullName(text)} style={{borderWidth:2, borderColor:"red", height:50, width:'100%'}}/>
-                <CustomTextInput label={'Name'} placeHolder={'Enter your full name'}/>
+                {/* <TextInput onChangeText={(text)=> setFullName(text)} style={{borderWidth:2, borderColor:"red", height:50, width:'100%'}}/> */}
 
-                <CustomTextInput label={'Email'} keyboardType={'email-address'} placeHolder={'Enter your email'}/>
+                <CustomTextInput label={'Name'} placeHolder={'Enter your full name'} onTextChange={function(value){
+                    setFullName(value)
 
-                <CustomTextInput label={'Password'} placeHolder={'password'}/>
+                }}/>
 
-                 <CustomTextInput keyboardType={'numeric'} label={'Phone'} placeHolder={'phone number'}/>
+                <CustomTextInput label={'Email'} keyboardType={'email-address'} placeHolder={'Enter your email'} onTextChange={(value)=>{
+                    setEmail(value)
+                }}/>
+
+
+                <CustomTextInput label={'Password'} placeHolder={'password'} onTextChange={(value)=>{
+                    setPassword(value)
+                }}/>
+
+                <CustomTextInput keyboardType={'numeric'} label={'Phone'} placeHolder={'phone number'} onTextChange={(value)=>{
+                    setPhone(value)
+                }}/>
 
             </View>
 

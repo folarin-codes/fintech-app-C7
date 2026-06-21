@@ -5,7 +5,7 @@ import { useState } from "react";
 
 
 
-const CustomTextInput = ({label, placeHolder, keyboardType})=>{
+const CustomTextInput = ({label, placeHolder, keyboardType, onTextChange})=>{
 
 
 
@@ -20,8 +20,11 @@ const CustomTextInput = ({label, placeHolder, keyboardType})=>{
 
             <View style={{gap:10}}>
 
-                 <Text style={styles.label}>{label}</Text>
-                <TextInput secureTextEntry={visible} style={{width:width*.7}} keyboardType={keyboardType} placeholder={placeHolder} placeholderTextColor={'black'} />  
+                <Text style={styles.label}>{label}</Text>
+
+                <TextInput secureTextEntry={!visible} style={{width:width*.7}} keyboardType={keyboardType} placeholder={placeHolder} placeholderTextColor={'black'}  onChangeText= {(text)=>{
+                    onTextChange(text)
+                }}/>  
 
             </View>
            
