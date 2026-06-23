@@ -64,7 +64,7 @@ const SignIn = ()=>{
                 <CustomButton style={{backgroundColor:"#E1E0fc", width:"30%", height:34}} textColor={'#2C14DD'} text={'Register'}/>
                 <CustomButton onPress={()=>{
 
-                    router.push('./budget')
+                    router.push('./home')
                   
                 }} style={{width:'60%'}} text={'Login'}/>
             </View>

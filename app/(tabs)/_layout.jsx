@@ -11,8 +11,8 @@ const TabsLayout = ()=>{
         return(
             <View style={{gap:10, alignItems:'center'}}>
               
-                {focused ?  <Octicons name="home" size={24} color={'red'} /> :  <Octicons name="home" size={24} color={'red'} />}
-                {focused ? <View style={{height:10, width:20, backgroundColor:"blue", borderRadius:5, position:"absolute", bottom:-15}}/> : null}
+                {focused ?  <Octicons name="home" size={24} color={'white'} /> :  <Octicons name="home" size={24} color={'#C1B9F9'} />}
+            
             </View>
         )
 
@@ -22,7 +22,7 @@ const TabsLayout = ()=>{
     return(
         <Tabs screenOptions={{
             headerShown:false,
-            tabBarStyle:{backgroundColor:"white", borderWidth:0, height:100, paddingTop:20, marginHorizontal:20, position:"absolute", borderRadius:50, bottom:20},
+            tabBarStyle:{backgroundColor:"blue", borderWidth:0, height:100, paddingTop:20, marginHorizontal:20, position:"absolute", borderRadius:50, bottom:20},
             tabBarActiveTintColor:"white",
             tabBarInactiveTintColor:"#C1B9F9",
             
@@ -30,7 +30,7 @@ const TabsLayout = ()=>{
             <Tabs.Screen name="home"
 
             options={{
-                title:"",
+                title:"Home",
     
                 tabBarIcon : ({focused, color})=> {
                     return(

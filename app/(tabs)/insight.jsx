@@ -1,13 +1,13 @@
 
-import { SafeAreaView } from "react-native-safe-area-context"
+import BSafeAreaView from "../../components/safeareaview";
 import { Text } from "react-native"
 
 const Insight = ()=>{
     return(
-        <SafeAreaView>
+        <BSafeAreaView>
             <Text>Insight</Text>
 
-        </SafeAreaView>
+        </BSafeAreaView>
     )
 }
 
