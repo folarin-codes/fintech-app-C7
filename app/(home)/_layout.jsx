@@ -7,6 +7,7 @@ const HomeLayout = ()=>{
             headerShown:false
         }}>
             <Stack.Screen name="account"/>
+            <Stack.Screen name="details"/>
 
         </Stack>
     )
