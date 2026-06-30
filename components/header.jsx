@@ -6,7 +6,7 @@ const Header = ({text})=>{
     return (
         <View style={{flexDirection:"row", alignItems:'center', justifyContent:'space-between', marginBottom:20}}>
 
-            <Pressable onPress={()=> {
+            <Pressable hitSlop={100} onPress={()=> {
                 router.back()
                 
                 }} style={{backgroundColor:"white", height:32, width:32, alignItems:"center", borderRadius:16,justifyContent:"center"}}>

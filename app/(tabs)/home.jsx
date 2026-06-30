@@ -3,8 +3,11 @@ import { router } from "expo-router";
 import BSafeAreaView from "../../components/safeareaview";
 import { Text , View, ImageBackground, ScrollView, Pressable, FlatList, Image} from "react-native"
 import { useEffect, useState } from "react";
+import useMovieStore from "../../store/movie.store";
 
 const Home = ()=>{
+
+    const { setMovieObject} = useMovieStore()
 
 
     console.log('I refreshed')
@@ -146,7 +149,16 @@ const getTop250MoviesFromImdb = async ()=>{
                 return(
 
                     <Pressable onPress={()=>{
+                       
+
+                        setMovieObject(movie.item)
                         router.push('../details')
+
+                        // router.push({
+                        //     pathname: '../details',
+                        //     params:{movieData : JSON.stringify(movie.item)}
+
+                        // })
                     }} style={{gap:10 }}>
 
                         <Image style={{ borderRadius:10, resizeMode:'cover', height:562}} source={{uri:movie.item.primaryImage}}/>
